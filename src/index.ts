@@ -36,10 +36,7 @@ const importTranslation = require.context(
  * installed. The keys are the part of the module name after
  * `openmrs-module-`; e.g., `openmrs-module-fhir2` becomes `fhir2`.
  */
-const backendDependencies = {
-  fhir2: "^1.2.0",
-  "webservices.rest": "^2.2.0",
-};
+const backendDependencies = {};
 
 /**
  * This function performs any setup that should happen at microfrontend
@@ -54,47 +51,28 @@ const backendDependencies = {
  * `/openmrs/spa/hello`.
  */
 function setupOpenMRS() {
-  const moduleName = "@openmrs/esm-template-app";
-
+  const moduleName = "@pih/esm-referrals-queue-app";
+  const pageName = "referreals-queue";
   const options = {
-    featureName: "hello-world",
+    featureName: pageName,
     moduleName,
   };
 
   defineConfigSchema(moduleName, configSchema);
 
+  /*
+  registerBreadcrumbs([
+    {
+      path: `${window.spaBase}/${pageName}`,
+      title: "Referrals Queue",
+    },
+  ]);*/
+
   return {
     pages: [
       {
-        load: getAsyncLifecycle(() => import("./hello"), options),
-        route: "hello",
-      },
-    ],
-    extensions: [
-      {
-        id: "Red box",
-        load: getAsyncLifecycle(
-          () => import("./boxes/extensions/red-box"),
-          options
-        ),
-        slot: "Boxes",
-      },
-      {
-        id: "Blue box",
-        load: getAsyncLifecycle(
-          () => import("./boxes/extensions/blue-box"),
-          options
-        ),
-        slot: "Boxes",
-        // same as `slots: ["Boxes"],`
-      },
-      {
-        id: "Brand box",
-        load: getAsyncLifecycle(
-          () => import("./boxes/extensions/brand-box"),
-          options
-        ),
-        slot: "Boxes",
+        load: getAsyncLifecycle(() => import("./root.component"), options),
+        activate: pageName,
       },
     ],
   };

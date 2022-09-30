@@ -1,0 +1,39 @@
+/* This is based on https://github.com/airbnb/react-dates#overriding-styles */
+
+/* NOTE: the order of these styles DO matter */
+
+/* Will edit everything selected including everything between a range of dates */
+.CalendarDay__selected_span {
+  background: var(--omrs-color-interaction-minus-one);
+  border: 1px solid var(--omrs-color-interaction);
+}
+
+/* Will edit selected date or the endpoints of a range of dates */
+.CalendarDay__selected {
+  background: var(--omrs-color-interaction-plus-one);
+  border: 1px solid var(--omrs-color-interaction-plus-two);
+}
+
+/* Will edit when hovered over. _span style also has this property */
+.CalendarDay__selected:hover {
+  background: var(--omrs-color-interaction-plus-two);
+  border: 1px solid var(--omrs-color-interaction);
+}
+
+/* Will edit when hovered over. _span style also has this property */
+.CalendarDay__selected_span:hover {
+  background: var(--omrs-color-interaction);
+  border: 1px solid var(--omrs-color-interaction-plus-one);
+}
+
+/* Will edit the underline in the focused input box */
+.DateInput_input__focused {
+  border-bottom: 2px solid var(--omrs-color-interaction);
+}
+
+/* Will edit when the second date (end date) in a range of dates */
+/* is not yet selected. Edits the dates between your mouse and said date */
+/* .CalendarDay__hovered_span:hover,
+.CalendarDay__hovered_span {
+  background: var(--omrs-color-interaction-minus-two);
+} */

@@ -18,7 +18,7 @@ own microfrontend.
 
 ```sh
 yarn  # to install dependencies
-yarn start  # to run the dev server
+yarn start --backend "http://localhost:8080/" --port 8081 # will run against a local OpenMRS server at localhost:8080, serving the frontend from 8081
 ```
 
 Once it is running, a browser window
