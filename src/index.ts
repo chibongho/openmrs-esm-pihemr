@@ -52,9 +52,8 @@ const backendDependencies = {};
  */
 function setupOpenMRS() {
   const moduleName = "@pih/esm-referrals-queue-app";
-  const pageName = "referreals-queue";
   const options = {
-    featureName: pageName,
+    featureName: "referrals-queue",
     moduleName,
   };
 
@@ -72,7 +71,7 @@ function setupOpenMRS() {
     pages: [
       {
         load: getAsyncLifecycle(() => import("./root.component"), options),
-        activate: pageName,
+        route: "referrals-queue",
       },
     ],
   };
