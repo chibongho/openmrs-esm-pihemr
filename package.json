@@ -48,7 +48,7 @@
     "lodash-es": "^4.17.15"
   },
   "peerDependencies": {
-    "@openmrs/esm-framework": "^4.x",
+    "@openmrs/esm-framework": "next",
     "carbon-components": "10.x",
     "carbon-icons": "7.x",
     "dayjs": "1.x",
@@ -59,19 +59,16 @@
   },
   "devDependencies": {
     "@openmrs/esm-framework": "next",
-    "@swc/cli": "^0.1.57",
-    "@swc/core": "^1.2.203",
+     "@swc/core": "^1.2.203",
     "@swc/jest": "^0.2.21",
     "@testing-library/dom": "^7.31.2",
     "@testing-library/jest-dom": "^5.13.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^13.1.9",
-    "@types/carbon-components-react": "^7.34.0",
-    "@types/carbon__icons-react": "^10.31.0",
-    "@types/jest": "^26.0.23",
-    "@types/react": "^16.13.1",
+    "@types/jest": "^28.1.4",
+    "@types/react": "^18.0.14",
     "@types/react-dates": "^21.8.0",
-    "@types/react-dom": "^16.9.14",
+    "@types/react-dom": "^18.0.5",
     "@types/react-router": "^5.1.14",
     "@types/react-router-dom": "^5.1.7",
     "@types/webpack-env": "^1.16.0",
@@ -95,13 +92,9 @@
     "react-i18next": "^11.7.0",
     "react-router-dom": "^6.3.0",
     "rxjs": "^6.5.4",
-    "swc-loader": "^0.2.3",
-    "systemjs-webpack-interop": "^2.3.7",
-    "typescript": "^4.3.2",
-    "webpack": "^5.73.0",
-    "webpack-cli": "^4.10.0"
+    "typescript": "^4.3.2"
   },
   "resolutions": {
-    "**/@types/react": "^16.13.1"
+    "**/@types/react": "^18.0.14"
   }
 }
