@@ -11,8 +11,8 @@ import { getReferrals } from "./referrals-queue.resource";
 
 // Override the webpack CSS loader config in order to load react-dates styles.
 //   See thread: https://github.com/webpack-contrib/css-loader/issues/295
-//import "!style-loader!css-loader!react-dates/lib/css/_datepicker.css";
-//import "!style-loader!css-loader!./react-dates-overrides.css";
+import "!style-loader!css-loader!react-dates/lib/css/_datepicker.css";
+import "!style-loader!css-loader!./react-dates-overrides.css";
 
 export default function ReferralsQueue(props: ReferralsQueueProps) {
   const [referrals, setReferrals]: [Referral[], Function] = React.useState([]);
