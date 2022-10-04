@@ -19,6 +19,7 @@ own microfrontend.
 ```sh
 yarn  # to install dependencies
 yarn start --backend "http://localhost:8080/" --port 8081 # will run against a local OpenMRS server at localhost:8080, serving the frontend from 8081
+yarn start --backend "http://humci.pih-emr.org/" --api-url /mirebalais/   # run against HUM-CI
 ```
 
 Once it is running, a browser window

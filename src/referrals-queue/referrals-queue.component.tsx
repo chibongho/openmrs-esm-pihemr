@@ -26,7 +26,7 @@ export default function ReferralsQueue(props: ReferralsQueueProps) {
   const [toDateFocused, setToDateFocused] = React.useState(false);
   const { t, i18n } = useTranslation();
 
-  const languageMatches = i18n.language.match(/^(en|fr|ht).*/);
+  const languageMatches = i18n.language?.match(/^(en|fr|ht).*/);
   const language = (languageMatches && languageMatches[1]) || "en";
 
   React.useEffect(() => {

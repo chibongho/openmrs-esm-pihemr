@@ -2,13 +2,14 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ReferralsQueue from "./referrals-queue/referrals-queue.component";
 import styles from "./root.css";
+import { appPath } from "./constants";
 
-export default function Root(props) {
+export default function Root() {
   return (
-    <div className={`omrs-main-content ${styles.overflowAuto}`}>
-      <BrowserRouter basename={window["getOpenmrsSpaBase"]()}>
+    <div className={`omrs-main-content ${styles.ovconstantserflowAuto}`}>
+      <BrowserRouter basename={appPath}>
         <Routes>
-          <Route path="/referrals-queue" element={<ReferralsQueue />} />
+          <Route path="/" element={<ReferralsQueue />} />
         </Routes>
       </BrowserRouter>
     </div>
