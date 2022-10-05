@@ -94,7 +94,7 @@ describe("referrals queue", () => {
   });
 
   // TODO: fix and re-enable
-  /*it("navigates to the links", async () => {
+  it.skip("navigates to the links", async () => {
     const table = screen.getByRole("table");
     const pt0DashLink = within(table).getByText(referrals[0].zl_emr_id);
     fireEvent.click(pt0DashLink);
@@ -117,7 +117,7 @@ describe("referrals queue", () => {
         `/openmrs/home-visit-form/${referrals[1].patient_uuid}/${referrals[1].visit_uuid}/${referrals[1].encounter_uuid}`
       );
     });
-  });*/
+  });
 
   it("doesn't make non-pending statuses into links", () => {
     const table = screen.getByRole("table");
