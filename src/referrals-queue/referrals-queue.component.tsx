@@ -75,8 +75,6 @@ export default function ReferralsQueue(props: ReferralsQueueProps) {
     ),
   ];
 
-  // TODO: localization not working?
-  // TODO: widths and layout
   return (
     <Content className={styles.container}>
       <Tile>
@@ -110,6 +108,7 @@ export default function ReferralsQueue(props: ReferralsQueueProps) {
             <div style={{ width: 300 }}>
               <Dropdown
                 id="referral-type"
+                label=""
                 titleText={t("referral-type", "Referral Type")}
                 items={referralTypes}
                 onChange={(e) => setReferralTypeFilter(e.selectedItem)}
@@ -123,6 +122,7 @@ export default function ReferralsQueue(props: ReferralsQueueProps) {
               </label>
               <Search
                 id="query-input"
+                labelText=""
                 onChange={(e) => setPtQuery(e.target.value)}
               />
             </div>
@@ -131,6 +131,7 @@ export default function ReferralsQueue(props: ReferralsQueueProps) {
             <div style={{ width: 300 }}>
               <Dropdown
                 id="status"
+                label=""
                 titleText={t("status", "Status")}
                 items={statuses}
                 onChange={(e) => setStatusFilter(e.selectedItem)}
