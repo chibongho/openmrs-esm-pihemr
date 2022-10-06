@@ -1,4 +1,13 @@
 {
-  "casualGreeting": "hey",
-  "formalGreeting": "hello"
+  "any": "Any",
+  "details": "Details",
+  "emr-id": "EMR ID",
+  "filter-by-patient": "Filter by patient",
+  "from": "From",
+  "name": "Name",
+  "referral-date": "Referral Date",
+  "referral-type": "Referral Type",
+  "referrals-queue": "Referrals Queue",
+  "status": "Status",
+  "to": "To"
 }

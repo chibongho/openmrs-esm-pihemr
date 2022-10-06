@@ -1,0 +1,13 @@
+{
+  "any": "Tout",
+  "details": "Détails",
+  "emr-id": "EMR ID",
+  "filter-by-patient": "Filtrer avec patient",
+  "from": "de",
+  "name": "Nom",
+  "referral-date": "Date de Référé",
+  "referral-type": "Type Référé",
+  "referrals-queue": "List de Référé",
+  "status": "État",
+  "to": "à"
+}
