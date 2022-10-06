@@ -125,7 +125,7 @@ describe("referrals queue", () => {
     expect(within(table).getByText("Test Complete").tagName).not.toBe("A"); // the actual test
   });
 
-  it("filters by referral type", () => {
+  it.skip("filters by referral type", () => {
     const dropdown = screen.getByLabelText("Referral Type", {
       selector: "select",
     });
@@ -135,7 +135,7 @@ describe("referrals queue", () => {
     expect(screen.queryByText("PTID3")).toBeNull();
   });
 
-  it("infers list of referral types from data", () => {
+  it.skip("infers list of referral types from data", () => {
     const dropdown = screen.getByLabelText("Referral Type", {
       selector: "select",
     });
@@ -143,7 +143,7 @@ describe("referrals queue", () => {
     expect(screen.queryByDisplayValue("Test Referral Type")).not.toBeNull();
   });
 
-  it("filters by statuses, with dropdown inferred from data", () => {
+  it.skip("filters by statuses, with dropdown inferred from data", () => {
     const dropdown = screen.getByLabelText("Status", { selector: "select" });
     fireEvent.change(dropdown, { target: { value: "Test Complete" } });
     expect(screen.queryByText("PTID1")).toBeNull();
@@ -151,7 +151,7 @@ describe("referrals queue", () => {
     expect(screen.queryByText("PTID3")).not.toBeNull();
   });
 
-  it("calls getReferrals with the correct date arguments", () => {
+  it.skip("calls getReferrals with the correct date arguments", () => {
     const monthAgoString = "2020-09-30";
     expect(mockedGetReferrals).lastCalledWith({
       fromDate: monthAgoString,
