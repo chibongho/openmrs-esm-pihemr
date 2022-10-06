@@ -7,9 +7,11 @@
   line-height: 2rem;
 }
 
+/*
 .tr:nth-child(even) {
-  background-color: var(--omrs-color-bg-medium-contrast);
+  background-color:
 }
+*/
 
 .table td {
   padding: 0.25rem 0.5rem;

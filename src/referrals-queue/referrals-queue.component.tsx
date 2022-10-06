@@ -60,8 +60,8 @@ export default function ReferralsQueue(props: ReferralsQueueProps) {
   ];
   return (
     <div className={styles.container}>
-      <div className="omrs-card omrs-margin-top-16 omrs-padding-16">
-        <div className="omrs-type-title-2">
+      <div>
+        <div>
           <Trans i18nKey="referrals-queue">Referrals Queue</Trans>
         </div>
         <div className={styles.controlsContainer}>
@@ -98,7 +98,7 @@ export default function ReferralsQueue(props: ReferralsQueueProps) {
             </div>
           </div>
           <div className={styles.inputContainer}>
-            <div className="omrs-input-group">
+            <div>
               <label htmlFor="referral-type">
                 <Trans i18nKey="referral-type">Referral Type</Trans>
               </label>
@@ -118,7 +118,7 @@ export default function ReferralsQueue(props: ReferralsQueueProps) {
             </div>
           </div>
           <div className={styles.inputContainer}>
-            <div className="omrs-input-group">
+            <div>
               <label htmlFor="query-input">
                 <Trans i18nKey="filter-by-patient">Filter by patient</Trans>
               </label>
@@ -127,12 +127,11 @@ export default function ReferralsQueue(props: ReferralsQueueProps) {
                 type="text"
                 value={ptQuery}
                 onChange={(e) => setPtQuery(e.target.value)}
-                className="omrs-input-outlined"
               />
             </div>
           </div>
           <div className={styles.inputContainer}>
-            <div className="omrs-input-group">
+            <div>
               <label htmlFor="status">
                 <Trans i18nKey="status">Status</Trans>
               </label>

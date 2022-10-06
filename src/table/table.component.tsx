@@ -18,7 +18,7 @@ export default function Table(props: TableProps) {
   return (
     <table className={styles.table}>
       <thead>
-        <tr className={`omrs-bold ${styles.tr}`}>
+        <tr className={`${styles.tr}`}>
           <td>
             <Trans i18nKey="emr-id">EMR ID</Trans>
           </td>

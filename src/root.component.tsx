@@ -6,7 +6,7 @@ import { appPath } from "./constants";
 
 export default function Root() {
   return (
-    <div className={`omrs-main-content ${styles.ovconstantserflowAuto}`}>
+    <div className={`${styles.ovconstantserflowAuto}`}>
       <BrowserRouter basename={appPath}>
         <Routes>
           <Route path="/" element={<ReferralsQueue />} />
