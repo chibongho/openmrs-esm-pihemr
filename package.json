@@ -55,8 +55,8 @@
     "rxjs": "6.x"
   },
   "devDependencies": {
-    "@carbon/react": "^1.9.0",
     "@carbon/icons-react": "^10.18.0",
+    "@carbon/react": "1.9.0",
     "@openmrs/esm-framework": "next",
     "@swc/core": "^1.2.203",
     "@swc/jest": "^0.2.21",

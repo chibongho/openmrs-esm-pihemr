@@ -1,18 +1,21 @@
 import React from "react";
 import { Trans, useTranslation } from "react-i18next";
 import "react-dates/initialize";
-import { SingleDatePicker } from "react-dates";
-import moment, { Moment } from "moment";
+import moment from "moment";
+import {
+  Content,
+  Tile,
+  Heading,
+  Search,
+  Dropdown,
+  DatePicker,
+  DatePickerInput,
+} from "@carbon/react";
 import "moment/locale/fr";
 import { createErrorHandler } from "@openmrs/esm-framework";
-import Table from "../table/table.component";
-import styles from "./referrals-queue.css";
+import Table from "../table/referrals-table.component";
+import styles from "./referrals-queue.scss";
 import { getReferrals } from "./referrals-queue.resource";
-
-// Override the webpack CSS loader config in order to load react-dates styles.
-//   See thread: https://github.com/webpack-contrib/css-loader/issues/295
-import "!style-loader!css-loader!react-dates/lib/css/_datepicker.css";
-import "!style-loader!css-loader!./react-dates-overrides.css";
 
 export default function ReferralsQueue(props: ReferralsQueueProps) {
   const [referrals, setReferrals]: [Referral[], Function] = React.useState([]);
@@ -22,8 +25,6 @@ export default function ReferralsQueue(props: ReferralsQueueProps) {
   const [fromDate, setFromDate] = React.useState(moment().subtract(1, "month"));
   const [toDate, setToDate] = React.useState(today);
   const [ptQuery, setPtQuery] = React.useState("");
-  const [fromDateFocused, setFromDateFocused] = React.useState(false);
-  const [toDateFocused, setToDateFocused] = React.useState(false);
   const { t, i18n } = useTranslation();
 
   const languageMatches = i18n.language?.match(/^(en|fr|ht).*/);
@@ -47,74 +48,72 @@ export default function ReferralsQueue(props: ReferralsQueueProps) {
     }
   }, [fromDate, toDate, language]);
 
-  // console.log(referrals);
   const filteredReferrals = referrals
-    .filter((r) => !referralTypeFilter || r.referral_type == referralTypeFilter)
-    .filter((r) => !statusFilter || r.fulfillment_status == statusFilter)
+    .filter(
+      (r) =>
+        !referralTypeFilter ||
+        referralTypeFilter == t("any", "Any") ||
+        r.referral_type == referralTypeFilter
+    )
+    .filter(
+      (r) =>
+        !statusFilter ||
+        statusFilter == t("any", "Any") ||
+        r.fulfillment_status == statusFilter
+    )
     .filter((r) => matchQuery(r, ptQuery));
-  const referralTypes = [...new Set(referrals.map((r) => r.referral_type))];
+
+  const referralTypes = [
+    t("any", "Any"),
+    ...new Set(referrals.map((r) => r.referral_type).filter((r) => r != null)),
+  ];
+
   const statuses = [
+    t("any", "Any"),
     ...new Set(
       referrals.map((r) => r.fulfillment_status).filter((r) => r != null)
     ),
   ];
+
+  // TODO: localization not working?
+  // TODO: widths and layout
   return (
-    <div className={styles.container}>
-      <div>
-        <div>
+    <Content className={styles.container}>
+      <Tile>
+        <Heading>
           <Trans i18nKey="referrals-queue">Referrals Queue</Trans>
-        </div>
+        </Heading>
         <div className={styles.controlsContainer}>
           <div className={styles.inputContainer}>
             <div className={styles.dateInputContainer}>
-              <label htmlFor="from-date">
-                <Trans i18nKey="from">From</Trans>
-              </label>
-              <SingleDatePicker
-                id="from-date"
-                date={fromDate}
-                onDateChange={(date) => setFromDate(date)}
-                focused={fromDateFocused}
-                onFocusChange={({ focused }) => setFromDateFocused(focused)}
-                isOutsideRange={(date: Moment) => date.isAfter(today)}
-                displayFormat="DD MMM YYYY"
-                numberOfMonths={1}
-              />
-            </div>
-            <div className={styles.dateInputContainer}>
-              <label htmlFor="to-date">
-                <Trans i18nKey="to">To</Trans>
-              </label>
-              <SingleDatePicker
-                id="to-date"
-                date={toDate}
-                onDateChange={(date) => setToDate(date)}
-                focused={toDateFocused}
-                onFocusChange={({ focused }) => setToDateFocused(focused)}
-                isOutsideRange={(date: Moment) => date.isAfter(today)}
-                displayFormat="DD MMM YYYY"
-                numberOfMonths={1}
-              />
+              <DatePicker
+                dateFormat="d/M/Y"
+                datePickerType="range"
+                locale={language === "ht" ? "fr" : language}
+                maxDate={new Date().toISOString()}
+                onChange={(date) => {
+                  if (date && date.length > 0) {
+                    setFromDate(date ? moment(date[0]) : null);
+                    if (date.length > 1) {
+                      setToDate(date ? moment(date[1]) : null);
+                    }
+                  }
+                }}
+                value={[fromDate.toISOString(), toDate.toISOString()]}
+              >
+                <DatePickerInput id="from-date" labelText={t("from", "From")} />
+                <DatePickerInput id="to-date" labelText={t("to", "To")} />
+              </DatePicker>
             </div>
           </div>
           <div className={styles.inputContainer}>
-            <div>
-              <label htmlFor="referral-type">
-                <Trans i18nKey="referral-type">Referral Type</Trans>
-              </label>
-              <select
+            <div style={{ width: 300 }}>
+              <Dropdown
                 id="referral-type"
-                value={referralTypeFilter}
-                onChange={(e) => setReferralTypeFilter(e.target.value)}
-                className={styles.dropdown}
-              >
-                <option value="">{t("any", "Any")}</option>
-                {referralTypes.map((t) => (
-                  <option key={t} value={t}>
-                    {t}
-                  </option>
-                ))}
-              </select>
+                titleText={t("referral-type", "Referral Type")}
+                items={referralTypes}
+                onChange={(e) => setReferralTypeFilter(e.selectedItem)}
+              />
             </div>
           </div>
           <div className={styles.inputContainer}>
@@ -122,40 +121,28 @@ export default function ReferralsQueue(props: ReferralsQueueProps) {
               <label htmlFor="query-input">
                 <Trans i18nKey="filter-by-patient">Filter by patient</Trans>
               </label>
-              <input
+              <Search
                 id="query-input"
-                type="text"
-                value={ptQuery}
                 onChange={(e) => setPtQuery(e.target.value)}
               />
             </div>
           </div>
           <div className={styles.inputContainer}>
-            <div>
-              <label htmlFor="status">
-                <Trans i18nKey="status">Status</Trans>
-              </label>
-              <select
+            <div style={{ width: 300 }}>
+              <Dropdown
                 id="status"
-                value={statusFilter}
-                onChange={(e) => setStatusFilter(e.target.value)}
-                className={styles.dropdown}
-              >
-                <option value="">{t("any", "Any")}</option>
-                {statuses.map((t) => (
-                  <option key={t} value={t}>
-                    {t}
-                  </option>
-                ))}
-              </select>
+                titleText={t("status", "Status")}
+                items={statuses}
+                onChange={(e) => setStatusFilter(e.selectedItem)}
+              />
             </div>
           </div>
         </div>
         <div className={styles.tableContainer}>
           <Table referrals={filteredReferrals} />
         </div>
-      </div>
-    </div>
+      </Tile>
+    </Content>
   );
 }
 

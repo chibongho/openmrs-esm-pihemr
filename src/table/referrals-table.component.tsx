@@ -1,50 +1,57 @@
 import React from "react";
 import {
+  Table,
+  TableHead,
+  TableHeader,
+  TableRow,
+  TableBody,
+  TableCell,
+} from "@carbon/react";
+import {
   ConfigurableLink,
   interpolateString,
   useConfig,
 } from "@openmrs/esm-framework";
 import { Trans } from "react-i18next";
-import styles from "./table.css";
 import { formatDate } from "../util";
 
-export interface TableProps {
+export interface ReferralsTableProps {
   referrals: Referral[];
 }
 
-export default function Table(props: TableProps) {
+export default function ReferrablesTable(props: ReferralsTableProps) {
   const config = useConfig();
 
   return (
-    <table className={styles.table}>
-      <thead>
-        <tr className={`${styles.tr}`}>
-          <td>
+    <Table>
+      <TableHead>
+        <TableRow>
+          <TableHeader>
             <Trans i18nKey="emr-id">EMR ID</Trans>
-          </td>
-          <td>
+          </TableHeader>
+          <TableHeader>
             <Trans i18nKey="name">Name</Trans>
-          </td>
-          <td>
+          </TableHeader>
+          <TableHeader>
             <Trans i18nKey="referral-date">Referral Date</Trans>
-          </td>
-          <td>
+          </TableHeader>
+          <TableHeader>
             <Trans i18nKey="referral-type">Referral Type</Trans>
-          </td>
-          <td>
+          </TableHeader>
+          <TableHeader>
             <Trans i18nKey="details">Details</Trans>
-          </td>
-          <td>
+          </TableHeader>
+          <TableHeader>
             <Trans i18nKey="status">Status</Trans>
-          </td>
-        </tr>
-      </thead>
-      <tbody>
+          </TableHeader>
+        </TableRow>
+      </TableHead>
+      <TableBody>
         {props.referrals &&
           props.referrals.map((referral, index) => (
             <React.Fragment key={index}>
-              <tr className={styles.tr}>
-                <td>
+              <TableRow>
+                <TableCell>
                   <ConfigurableLink
                     to={interpolateString(config.links.patientDash, {
                       patientUuid:
@@ -53,9 +60,9 @@ export default function Table(props: TableProps) {
                   >
                     {referral.zl_emr_id}
                   </ConfigurableLink>
-                </td>
-                <td>{referral.patient_name}</td>
-                <td>
+                </TableCell>
+                <TableCell>{referral.patient_name}</TableCell>
+                <TableCell>
                   <ConfigurableLink
                     to={interpolateString(config.links.visitPage, {
                       patientUuid:
@@ -65,10 +72,10 @@ export default function Table(props: TableProps) {
                   >
                     {formatDate(referral.referral_date)}
                   </ConfigurableLink>
-                </td>
-                <td>{referral.referral_type}</td>
-                <td>{referral.details}</td>
-                <td>
+                </TableCell>
+                <TableCell>{referral.referral_type}</TableCell>
+                <TableCell>{referral.details}</TableCell>
+                <TableCell>
                   {config.pendingStatuses.includes(
                     referral.fulfillment_status
                   ) ? (
@@ -85,11 +92,11 @@ export default function Table(props: TableProps) {
                   ) : (
                     referral.fulfillment_status
                   )}
-                </td>
-              </tr>
+                </TableCell>
+              </TableRow>
             </React.Fragment>
           ))}
-      </tbody>
-    </table>
+      </TableBody>
+    </Table>
   );
 }
