@@ -8,6 +8,8 @@
   "referral-date": "Fecha de referencia",
   "referral-type": "Tipo de referencia",
   "referrals-queue": "Cola de referencias",
+  "select-referral-type": "Seleccionar tipo de referencia",
+  "select-status": "Seleccionar estado",
   "status": "Estado",
   "to": "Hasta"
 }

@@ -106,7 +106,7 @@ export default function ReferralsQueue(props: ReferralsQueueProps) {
             <div style={{ width: 400 }}>
               <Dropdown
                 id="referral-type"
-                label=""
+                label={t("select-referral-type", "Select Referral Type")}
                 titleText={t("referral-type", "Referral Type")}
                 items={referralTypes}
                 onChange={(e) => setReferralTypeFilter(e.selectedItem)}
@@ -129,7 +129,7 @@ export default function ReferralsQueue(props: ReferralsQueueProps) {
             <div style={{ width: 400 }}>
               <Dropdown
                 id="status"
-                label=""
+                label={t("select-status", "Select Status")}
                 titleText={t("status", "Status")}
                 items={statuses}
                 onChange={(e) => setStatusFilter(e.selectedItem)}
