@@ -83,29 +83,27 @@ export default function ReferralsQueue(props: ReferralsQueueProps) {
         </Heading>
         <div className={styles.controlsContainer}>
           <div className={styles.inputContainer}>
-            <div className={styles.dateInputContainer}>
-              <DatePicker
-                dateFormat="d/M/Y"
-                datePickerType="range"
-                locale={language === "ht" ? "fr" : language}
-                maxDate={new Date().toISOString()}
-                onChange={(date) => {
-                  if (date && date.length > 0) {
-                    setFromDate(date ? moment(date[0]) : null);
-                    if (date.length > 1) {
-                      setToDate(date ? moment(date[1]) : null);
-                    }
+            <DatePicker
+              dateFormat="d/M/Y"
+              datePickerType="range"
+              locale={language === "ht" ? "fr" : language}
+              maxDate={new Date().toISOString()}
+              onChange={(date) => {
+                if (date && date.length > 0) {
+                  setFromDate(date ? moment(date[0]) : null);
+                  if (date.length > 1) {
+                    setToDate(date ? moment(date[1]) : null);
                   }
-                }}
-                value={[fromDate.toISOString(), toDate.toISOString()]}
-              >
-                <DatePickerInput id="from-date" labelText={t("from", "From")} />
-                <DatePickerInput id="to-date" labelText={t("to", "To")} />
-              </DatePicker>
-            </div>
+                }
+              }}
+              value={[fromDate.toISOString(), toDate.toISOString()]}
+            >
+              <DatePickerInput id="from-date" labelText={t("from", "From")} />
+              <DatePickerInput id="to-date" labelText={t("to", "To")} />
+            </DatePicker>
           </div>
           <div className={styles.inputContainer}>
-            <div style={{ width: 300 }}>
+            <div style={{ width: 400 }}>
               <Dropdown
                 id="referral-type"
                 label=""
@@ -116,7 +114,7 @@ export default function ReferralsQueue(props: ReferralsQueueProps) {
             </div>
           </div>
           <div className={styles.inputContainer}>
-            <div>
+            <div style={{ width: 400 }}>
               <label htmlFor="query-input">
                 <Trans i18nKey="filter-by-patient">Filter by patient</Trans>
               </label>
@@ -128,7 +126,7 @@ export default function ReferralsQueue(props: ReferralsQueueProps) {
             </div>
           </div>
           <div className={styles.inputContainer}>
-            <div style={{ width: 300 }}>
+            <div style={{ width: 400 }}>
               <Dropdown
                 id="status"
                 label=""
