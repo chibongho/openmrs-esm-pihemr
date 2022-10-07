@@ -93,7 +93,7 @@ describe("referrals queue", () => {
     screen.getByText("28 Mar");
   });
 
-  // TODO: fix and re-enable
+  // TODO figure out how to test links
   it.skip("navigates to the links", async () => {
     const table = screen.getByRole("table");
     const pt0DashLink = within(table).getByText(referrals[0].zl_emr_id);
@@ -125,32 +125,42 @@ describe("referrals queue", () => {
     expect(within(table).getByText("Test Complete").tagName).not.toBe("A"); // the actual test
   });
 
-  it.skip("filters by referral type", () => {
-    const dropdown = screen.getByLabelText("Referral Type", {
-      selector: "select",
-    });
-    fireEvent.change(dropdown, { target: { value: "Mental Health" } });
+  it("filters by referral type", () => {
+    fireEvent.click(screen.getByLabelText("Referral Type", {
+      selector: "button",
+    }));
+    fireEvent.click(screen.getByText("Mental Health",  {
+      selector: "div"
+    }));
     expect(screen.queryByText("PTID1")).toBeNull();
     expect(screen.queryByText("PTID2")).not.toBeNull();
     expect(screen.queryByText("PTID3")).toBeNull();
   });
 
-  it.skip("infers list of referral types from data", () => {
-    const dropdown = screen.getByLabelText("Referral Type", {
-      selector: "select",
-    });
-    fireEvent.change(dropdown, { target: { value: "Test Referral Type" } });
-    expect(screen.queryByDisplayValue("Test Referral Type")).not.toBeNull();
+  it("infers list of referral types from data", () => {
+    expect(screen.queryByText("Test Referral Type", { selector: "span" })).toBeNull();  // sanity check
+    fireEvent.click(screen.getByLabelText("Referral Type", {
+      selector: "button",
+    }));
+    fireEvent.click(screen.getByText("Test Referral Type",  {
+      selector: "div"
+    }));
+    expect(screen.queryByText("Test Referral Type", { selector: "span" })).not.toBeNull();
   });
 
-  it.skip("filters by statuses, with dropdown inferred from data", () => {
-    const dropdown = screen.getByLabelText("Status", { selector: "select" });
-    fireEvent.change(dropdown, { target: { value: "Test Complete" } });
+  it("filters by statuses, with dropdown inferred from data", () => {
+    fireEvent.click(screen.getByLabelText("Status", {
+      selector: "button",
+    }));
+    fireEvent.click(screen.getByText("Test Complete",  {
+      selector: "div"
+    }));
     expect(screen.queryByText("PTID1")).toBeNull();
     expect(screen.queryByText("PTID2")).toBeNull();
     expect(screen.queryByText("PTID3")).not.toBeNull();
   });
 
+  // TODO figure out how to interact with Carbon datepicker
   it.skip("calls getReferrals with the correct date arguments", () => {
     const monthAgoString = "2020-09-30";
     expect(mockedGetReferrals).lastCalledWith({
