@@ -1,6 +1,9 @@
+<<<<<<< HEAD
+=======
 # OS files
 .DS_Store
 
+>>>>>>> pih-esm-referrals-queue/main
 # Logs
 logs
 *.log
@@ -45,6 +48,7 @@ typings/
 # Optional npm cache directory
 .npm
 
+<<<<<<< HEAD
 # ignores for Yarn v3 w/o PNP
 .pnp.*
 .yarn/*
@@ -54,6 +58,8 @@ typings/
 !.yarn/sdks
 !.yarn/versions
 
+=======
+>>>>>>> pih-esm-referrals-queue/main
 # Optional eslint cache
 .eslintcache
 
@@ -66,6 +72,7 @@ typings/
 # Yarn Integrity file
 .yarn-integrity
 
+<<<<<<< HEAD
 # next.js build output
 .next
 dist
@@ -100,3 +107,4 @@ dist/
 # Intellij integration
 .idea/
 *.iml
+>>>>>>> pih-esm-referrals-queue/main
